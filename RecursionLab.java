@@ -23,7 +23,14 @@ public class RecursionLab
   */
  
   public String countToBy(int countTo, int by) {
-    return null;
+
+      if (countTo - by < 1) {
+          return countTo + "";
+      }
+
+      else {
+          return countToBy(countTo - by, by) + ", " + countTo;
+      }
   }
  
  /**
@@ -38,7 +45,19 @@ public class RecursionLab
   */
  
   public int array11(int[] chars, int index) {
-    return 0;    
+      int val = 0;
+
+    if (index == chars.length) {
+        return val;
+    }
+
+    else {
+        if (chars[index] == 11) {
+            val ++;
+        }
+
+        return val + array11(chars, index+1);
+    }
   }
  
  /**
@@ -58,7 +77,24 @@ public class RecursionLab
   */
  
   public String zigzag(int n) {
-    return null;
+      String message = "";
+    if (n <= 2) {
+        switch(n) {
+            case 2:
+                message += "*";
+
+            case 1:
+                message += "*";
+
+            default:
+                return message;
+
+        }
+    }
+
+    else {
+        return "<" + zigzag(n - 2) + ">";
+    }
   }
   
  
@@ -81,7 +117,23 @@ public class RecursionLab
   *  at index 2 do not match.
   */
   public int nonMatching(String s1, String s2) {
-    return 0;
+
+      int total = 0;
+
+      if (s1.isEmpty() || s2.isEmpty()) {
+          return total;
+      }
+
+      else {
+          if (s1.charAt(0) != s2.charAt(0)) {
+              total++;
+          }
+
+          return total + nonMatching(
+                  s1.substring(1, s1.length()),
+                  s2.substring(1, s2.length()));
+      }
+
   }
 
   /**
@@ -93,6 +145,21 @@ public class RecursionLab
   * and the call of evenNumeros(35179) should return 0.*/
  
   public int evenNumeros(int n) {
-    return 0;
+      String digits = Integer.toString(n);
+      char num = digits.charAt(digits.length()-1);
+
+      if (n < 10) {
+          if (n % 2 == 0) {
+              return num;
+          }
+          return 0;
+      }
+
+      else {
+          if (n % 2 == 0) {
+              return Integer.parseInt(evenNumeros(n/10) + "" + num);
+          }
+          return evenNumeros(n/10);
+      }
   }
 } 
